@@ -97,20 +97,28 @@ html, body, [class*="css"] {
     border-radius: 12px;
     overflow: hidden;
 }
-[data-testid="stFileUploader"] > div {
+[data-testid="stFileUploader"] section {
     background: #0f0f13 !important;
     border: 1.5px dashed rgba(99, 102, 241, 0.3) !important;
     border-radius: 12px !important;
+    padding: 1.5rem !important;
     transition: border-color 0.2s;
-    padding: 2rem !important;
 }
-[data-testid="stFileUploader"] > div:hover {
+[data-testid="stFileUploader"] section:hover {
     border-color: rgba(99, 102, 241, 0.6) !important;
 }
+[data-testid="stFileUploader"] section > div {
+    gap: 0.5rem !important;
+}
 [data-testid="stFileUploader"] p,
-[data-testid="stFileUploader"] span {
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] span:not([data-testid="baseButton-primary"] span) {
     color: #7a7a92 !important;
     font-family: 'DM Sans', sans-serif !important;
+}
+/* hide the duplicated label that appears above the drop zone */
+[data-testid="stFileUploader"] > label {
+    display: none !important;
 }
 
 /* ── Slider ── */
@@ -256,7 +264,7 @@ st.markdown('<div class="card"><div class="card-label">📄 Your document</div>'
 uploaded = st.file_uploader(
     label="Upload your .docx file",
     type=["docx"],
-    label_visibility="collapsed"
+    label_visibility="hidden"
 )
 st.markdown('</div>', unsafe_allow_html=True)
 
